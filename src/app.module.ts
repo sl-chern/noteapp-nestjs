@@ -19,7 +19,7 @@ import { Note } from "./notes/notes.model"
       models: [Note],
       autoLoadModels: true
     }),
-    NotesModule,
+    NotesModule
   ]
 })
 export class AppModule {}

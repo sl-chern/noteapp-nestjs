@@ -8,7 +8,7 @@ import { Note } from './notes.model'
   controllers: [NotesController],
   providers: [NotesService],
   imports: [
-    SequelizeModule.forFeature([Note])
+    SequelizeModule.forFeature([Note]),
   ]
 })
 export class NotesModule {}

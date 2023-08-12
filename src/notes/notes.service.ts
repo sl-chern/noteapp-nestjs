@@ -1,14 +1,21 @@
-import { Injectable } from '@nestjs/common'
+import { Injectable, OnModuleInit } from '@nestjs/common'
 import { InjectModel } from '@nestjs/sequelize'
 import { Note } from './notes.model'
 import { CreateNoteDto } from './dto/create-note.dto'
 import { UpdateNoteDto } from './dto/update-note.dto'
 import { Sequelize } from 'sequelize'
 import categories from 'src/data/categories'
+import { notes } from 'src/data/notes'
 
 @Injectable()
-export class NotesService {
+export class NotesService implements OnModuleInit {
   constructor(@InjectModel(Note) private noteRepository: typeof Note) {}
+
+  async onModuleInit() {
+    const notesCount = await this.noteRepository.count()
+    if(notesCount === 0)
+      await this.noteRepository.bulkCreate(notes)
+  }
 
   async createNote(dto: CreateNoteDto): Promise<Note> {
     const note = await this.noteRepository.create(dto)
