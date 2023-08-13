@@ -20,9 +20,9 @@ $ npm run start:prod
 ## Running the app in docker
 
 ```bash
-# build
+# 1. build image
 $ docker-compose build
 
-# run
+# 2. run app
 $ docker-compose up
 ```
